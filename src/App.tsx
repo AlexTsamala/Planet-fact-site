@@ -1,17 +1,14 @@
-import React from 'react';
-import styled from 'styled-components'
 import Header from './components/Header';
-import information from './data.json'
 import { createGlobalStyle} from 'styled-components';
-import Overview from './components/Overview';
-
+import Planets from './components/Planets';
+import backgroundStars from "./images/background-stars.svg";
 
 function App() {
   return (
       <>
         <GlobalStyle/> 
         <Header/>
-        <Overview/>
+        <Planets/>
       </>
   );
 }
@@ -22,6 +19,7 @@ export default App;
 const GlobalStyle = createGlobalStyle`
   body {
     background-color: #070724;
+    background-image: url(${backgroundStars});
   }
 `
 
