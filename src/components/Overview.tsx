@@ -1,21 +1,19 @@
 import styled from "styled-components";
-import {useState} from "react";
 
-const Overview = () => {
 
-    const [name,setName] = useState<string>("OVERVIEW");
+const Overview = (props: any) => {
 
     const nameHandler = (name:string) => {
-        setName(name)
+        props.setName(name)
     }
 
     return ( 
     <Container>
         <hr></hr>
             <ButtonsContainer>
-                <h2 onClick={() => nameHandler("OVERVIEW")} style={name==="OVERVIEW" ? {borderBottom:"2px solid yellow"}:{}}>OVERVIEW</h2>
-                <h2 onClick={() => nameHandler("STRUCTURE")} style={name==="STRUCTURE" ? {borderBottom:"2px solid yellow"}:{}}>STRUCTURE</h2>
-                <h2 onClick={() => nameHandler("SURFACE")} style={name==="SURFACE" ? {borderBottom:"2px solid yellow"}:{}}>SURFACE</h2>
+                <h2 onClick={() => nameHandler("OVERVIEW")} style={props.name==="OVERVIEW" ? {borderBottom:"2px solid yellow"}:{}}>OVERVIEW</h2>
+                <h2 onClick={() => nameHandler("STRUCTURE")} style={props.name==="STRUCTURE" ? {borderBottom:"2px solid yellow"}:{}}>STRUCTURE</h2>
+                <h2 onClick={() => nameHandler("SURFACE")} style={props.name==="SURFACE" ? {borderBottom:"2px solid yellow"}:{}}>SURFACE</h2>
             </ButtonsContainer>
         <hr></hr>
     </Container>

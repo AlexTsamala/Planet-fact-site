@@ -1,15 +1,28 @@
 import styled from "styled-components";
 import Overview from "./Overview";
 import {useState} from "react";
-import information from "../data.json"
-import sourceIcon from "../images/icon-source.svg"
+import information from "../data.json";
+import sourceIcon from "../images/icon-source.svg";
 
 const Planets = () => {
+    const [name,setName] = useState<string>("OVERVIEW");
     return ( 
         <>
-            <Overview/>
+            <Overview name={name} setName={setName}/>
             <Container>
-                <Planet alt={information[0].name} src={information[0].images.planet}/>
+                {    name==="OVERVIEW" || name==="SURFACE"
+                    ?
+                    <Planet alt={information[0].name} src={information[0].images.planet}/>
+                    :
+                    <Planet alt={information[0].name} src={information[0].images.internal}/>
+                }
+                {
+                   name==="SURFACE"
+                    ?
+                    <SurfaceImg alt={information[0].name} src={information[0].images.geology}/>
+                    :
+                    <></>
+                }
                 <h1>{information[0].name}</h1>
                 <TextAboutPlanet>{information[0].geology.content}</TextAboutPlanet>
                 <SourceSection>
@@ -18,22 +31,22 @@ const Planets = () => {
                     <img alt="source" src={sourceIcon}/>
                 </SourceSection>
                 <StatisticSection>
-                    <div>
-                        <span>ROTATION TIME</span>
-                        <span>{information[0].rotation}</span>
-                    </div>    
-                    <div>
-                        <span>REVOLUTION TIME</span>
-                        <span>{information[0].revolution}</span>
-                    </div>
-                    <div>
-                        <span>RADIUS</span>
-                        <span>{information[0].radius}</span>
-                    </div>
-                    <div>
-                        <span>AVERAGE TEMP.</span>
-                        <span>{information[0].temperature}</span>
-                    </div>
+                    <StatisticDiv>
+                        <StatisticDescription>ROTATION TIME</StatisticDescription>
+                        <StatisticResult>{information[0].rotation}</StatisticResult>
+                    </StatisticDiv>    
+                    <StatisticDiv>
+                        <StatisticDescription>REVOLUTION TIME</StatisticDescription>
+                        <StatisticResult>{information[0].revolution}</StatisticResult>
+                    </StatisticDiv>
+                    <StatisticDiv>
+                        <StatisticDescription>RADIUS</StatisticDescription>
+                        <StatisticResult>{information[0].radius}</StatisticResult>
+                    </StatisticDiv>
+                    <StatisticDiv>
+                        <StatisticDescription>AVERAGE TEMP.</StatisticDescription>
+                        <StatisticResult>{information[0].temperature}</StatisticResult>
+                    </StatisticDiv>
                 </StatisticSection>
             </Container>
         </>
@@ -48,6 +61,7 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     margin:0 24px 47px;
+    position: relative;
     h1{
         font-family: "Antonio";
         font-size: 40px;
@@ -88,12 +102,12 @@ const SourceSection = styled.div`
     display: flex;
     align-items: center;
     gap: 5px;
+    margin-bottom:28px;
     a{
         font-family: 'League Spartan';
         padding-left:10px;
         opacity: 0.5;
         color:#ffffff;
-        font-family: Spartan;
         font-size: 12px;
         font-weight: 400;
         line-height: 25px;
@@ -101,5 +115,46 @@ const SourceSection = styled.div`
     }
 `
 const StatisticSection = styled.div`
-    
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+`
+const StatisticDiv = styled.div`
+    height: 48px;
+    width: 327px;
+    left: 24px;
+    top: 855px;
+    mix-blend-mode: normal;
+    border: 1px solid rgba(255,255,255,.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:16px 24px;
+`
+const StatisticDescription = styled.span`
+    font-family: 'League Spartan';
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.7px;
+    color:#ffffff;
+    mix-blend-mode: normal;
+    opacity: 0.5;
+`
+const StatisticResult = styled.span`
+    font-family: "Antonio";
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: -0.75px;
+    text-align: right;
+    text-transform: uppercase;
+    color:#ffffff;
+`
+
+const  SurfaceImg = styled.img`
+    position: absolute;
+    width: 100px;
+    height:100px;
+    top: 85px;
 `

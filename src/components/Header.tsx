@@ -1,11 +1,17 @@
 import styled from "styled-components";
 import menu from '../images/Group.png'
 
-const Header = () => {
+const Header = (props: any) => {
+
+    const statusHandler = () => props.setSandwichStatus(!props.sandwichStatus);
+
     return ( 
         <Container>
-            <h1>THE PLANETS</h1>
-            <img alt="menu" src={menu}/>
+            <div>
+                <h1>THE PLANETS</h1>
+                <img onClick={statusHandler} alt="menu" src={menu}/>
+            </div>
+            <hr></hr>
         </Container>
      );
 }
@@ -13,11 +19,19 @@ const Header = () => {
 export default Header;
 
 const Container = styled.div`
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;
-    margin:16px 24px;
+        div{
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: space-between;
+            margin:16px 24px; 
+        }
+        hr{
+            background-color: #ffffff;
+            height:1px;
+            border:none;
+            opacity: 0.2;
+        }
         h1{
             font-family: "Antonio";
             font-size: 28px;
