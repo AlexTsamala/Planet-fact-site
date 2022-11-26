@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Planets-fact-site/static/css/main.e60c7d75.css",
-    "main.js": "/Planets-fact-site/static/js/main.986ff21e.js",
-    "static/media/background-stars.svg": "/Planets-fact-site/static/media/background-stars.f6233a6a8d2351c57f2b64289718b309.svg",
-    "index.html": "/Planets-fact-site/index.html",
-    "static/media/icon-source.svg": "/Planets-fact-site/static/media/icon-source.90231c6845b7449a736412f3da2e3aaa.svg",
-    "main.e60c7d75.css.map": "/Planets-fact-site/static/css/main.e60c7d75.css.map",
-    "main.986ff21e.js.map": "/Planets-fact-site/static/js/main.986ff21e.js.map"
+    "main.css": "/planet/mercury/static/css/main.e60c7d75.css",
+    "main.js": "/planet/mercury/static/js/main.5c2059af.js",
+    "static/media/background-stars.svg": "/planet/mercury/static/media/background-stars.f6233a6a8d2351c57f2b64289718b309.svg",
+    "index.html": "/planet/mercury/index.html",
+    "static/media/icon-source.svg": "/planet/mercury/static/media/icon-source.90231c6845b7449a736412f3da2e3aaa.svg",
+    "main.e60c7d75.css.map": "/planet/mercury/static/css/main.e60c7d75.css.map",
+    "main.5c2059af.js.map": "/planet/mercury/static/js/main.5c2059af.js.map"
   },
   "entrypoints": [
     "static/css/main.e60c7d75.css",
-    "static/js/main.986ff21e.js"
+    "static/js/main.5c2059af.js"
   ]
 }
