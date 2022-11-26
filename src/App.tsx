@@ -5,6 +5,7 @@ import backgroundStars from "./images/background-stars.svg";
 import SandwichOfPlanet from "./components/Sandwich";
 import { useState } from "react";
 import { Navigate, Route, Routes } from "react-router";
+import DesktopHeader from "./components/HeaderOfDesktop";
 
 function App() {
   const [sandwichStatus, setSandwichStatus] = useState<boolean>(false);
@@ -15,6 +16,7 @@ function App() {
         sandwichStatus={sandwichStatus}
         setSandwichStatus={setSandwichStatus}
       />
+      <DesktopHeader />
       {sandwichStatus ? (
         <SandwichOfPlanet setSandwichStatus={setSandwichStatus} />
       ) : null}
@@ -35,5 +37,6 @@ const GlobalStyle = createGlobalStyle<{
     background-color: #070724;
     background-image: url(${backgroundStars});
     overflow: ${(props) => props.status};
+    overflow-x: hidden;
   }
 `;

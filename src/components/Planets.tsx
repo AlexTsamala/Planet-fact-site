@@ -4,6 +4,7 @@ import { useState } from "react";
 import information from "../data.json";
 import sourceIcon from "../images/icon-source.svg";
 import { useParams } from "react-router-dom";
+import DesktopOverview from "./DesktopOverview";
 
 const Planets = () => {
   const [name, setName] = useState<string>("OVERVIEW");
@@ -17,32 +18,68 @@ const Planets = () => {
       <Overview name={name} setName={setName} planetObj={planetObj} />
       {planetObj ? (
         <Container>
-          {name === "OVERVIEW" || name === "SURFACE" ? (
-            <Planet
-              alt={planetObj.name}
-              src={process.env.PUBLIC_URL + planetObj.images.planet}
-            />
-          ) : (
-            <Planet
-              alt={planetObj.name}
-              src={process.env.PUBLIC_URL + planetObj.images.internal}
-            />
-          )}
-          {name === "SURFACE" ? (
-            <SurfaceImg
-              alt={planetObj.name}
-              src={process.env.PUBLIC_URL + planetObj.images.geology}
-            />
-          ) : (
-            <></>
-          )}
-          <h1>{planetObj.name}</h1>
-          <TextAboutPlanet>{planetObj.geology.content}</TextAboutPlanet>
-          <SourceSection>
-            <SourceText>Source :</SourceText>
-            <a href={planetObj.geology.source}>Wikipedia</a>
-            <img alt="source" src={sourceIcon} />
-          </SourceSection>
+          <PlanetAndInfoDiv>
+            {name === "OVERVIEW" || name === "SURFACE" ? (
+              <Planet
+                alt={planetObj.name}
+                src={process.env.PUBLIC_URL + planetObj.images.planet}
+              />
+            ) : (
+              <Planet
+                alt={planetObj.name}
+                src={process.env.PUBLIC_URL + planetObj.images.internal}
+              />
+            )}
+            {name === "SURFACE" ? (
+              <SurfaceImg
+                alt={planetObj.name}
+                src={process.env.PUBLIC_URL + planetObj.images.geology}
+              />
+            ) : (
+              <></>
+            )}
+            <InfoDiv>
+              <h1>{planetObj.name}</h1>
+              {name === "OVERVIEW" ? (
+                <>
+                  <TextAboutPlanet>
+                    {planetObj.overview.content}
+                  </TextAboutPlanet>
+                  <SourceSection>
+                    <SourceText>Source :</SourceText>
+                    <a href={planetObj.overview.source}>Wikipedia</a>
+                    <img alt="source" src={sourceIcon} />
+                  </SourceSection>
+                </>
+              ) : name === "STRUCTURE" ? (
+                <>
+                  <TextAboutPlanet>
+                    {planetObj.structure.content}
+                  </TextAboutPlanet>
+                  <SourceSection>
+                    <SourceText>Source :</SourceText>
+                    <a href={planetObj.structure.source}>Wikipedia</a>
+                    <img alt="source" src={sourceIcon} />
+                  </SourceSection>
+                </>
+              ) : (
+                <>
+                  <TextAboutPlanet>{planetObj.geology.content}</TextAboutPlanet>
+                  <SourceSection>
+                    <SourceText>Source :</SourceText>
+                    <a href={planetObj.geology.source}>Wikipedia</a>
+                    <img alt="source" src={sourceIcon} />
+                  </SourceSection>
+                </>
+              )}
+
+              <DesktopOverview
+                name={name}
+                setName={setName}
+                planetObj={planetObj}
+              />
+            </InfoDiv>
+          </PlanetAndInfoDiv>
           <StatisticSection>
             <StatisticDiv>
               <StatisticDescription>ROTATION TIME</StatisticDescription>
@@ -83,6 +120,11 @@ const Container = styled.div`
     line-height: 52px;
     color: #ffffff;
     margin-bottom: 16px;
+    @media (min-width: 1440px) {
+      font-size: 80px;
+      font-weight: 400;
+      line-height: 104px;
+    }
   }
 `;
 
@@ -90,6 +132,11 @@ const Planet = styled.img`
   height: 111px;
   width: 111px;
   margin-bottom: 98px;
+  @media (min-width: 1440px) {
+    height: 500px;
+    width: 500px;
+    margin: 0;
+  }
 `;
 const TextAboutPlanet = styled.p`
   font-family: "League Spartan";
@@ -101,6 +148,13 @@ const TextAboutPlanet = styled.p`
   color: #ffffff;
   width: 327px;
   margin-bottom: 32px;
+  @media (min-width: 1440px) {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 25px;
+    width: 350px;
+    text-align: left;
+  }
 `;
 const SourceText = styled.span`
   font-family: "Antonio";
@@ -132,6 +186,10 @@ const StatisticSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    gap: 50px;
+  }
 `;
 const StatisticDiv = styled.div`
   height: 48px;
@@ -144,6 +202,13 @@ const StatisticDiv = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 16px 24px;
+  @media (min-width: 1440px) {
+    height: 128px;
+    width: 255px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
 `;
 const StatisticDescription = styled.span`
   font-family: "League Spartan";
@@ -154,6 +219,12 @@ const StatisticDescription = styled.span`
   color: #ffffff;
   mix-blend-mode: normal;
   opacity: 0.5;
+  @media (min-width: 1440px) {
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 25px;
+    letter-spacing: 1px;
+  }
 `;
 const StatisticResult = styled.span`
   font-family: "Antonio";
@@ -161,9 +232,14 @@ const StatisticResult = styled.span`
   font-weight: 400;
   line-height: 26px;
   letter-spacing: -0.75px;
-  text-align: right;
   text-transform: uppercase;
   color: #ffffff;
+  @media (min-width: 1440px) {
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 52px;
+    letter-spacing: -1.5px;
+  }
 `;
 
 const SurfaceImg = styled.img`
@@ -171,4 +247,32 @@ const SurfaceImg = styled.img`
   width: 100px;
   height: 100px;
   top: 85px;
+  @media (min-width: 1440px) {
+    width: 200px;
+    height: 200px;
+    top: 345px;
+    left: 150px;
+  }
+`;
+
+const InfoDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (min-width: 1440px) {
+    align-items: flex-start;
+  }
+`;
+
+const PlanetAndInfoDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    gap: 300px;
+    margin-top: 162px;
+    margin-bottom: 87px;
+    position: relative;
+  }
 `;

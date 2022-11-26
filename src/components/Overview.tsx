@@ -49,6 +49,9 @@ export default Overview;
 
 const Container = styled.div`
   margin-bottom: 95px;
+  @media (min-width: 1440px) {
+    display: none;
+  }
   hr {
     background-color: #ffffff;
     height: 1px;
