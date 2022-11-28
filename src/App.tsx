@@ -21,8 +21,11 @@ function App() {
         <SandwichOfPlanet setSandwichStatus={setSandwichStatus} />
       ) : null}
       <Routes>
-        <Route path="/" element={<Navigate to="/planet/mercury" replace />} />
-        <Route path="/planet/:planet" element={<Planets />} />
+        <Route
+          path="Planet-fact-site/"
+          element={<Navigate to="Planet-fact-site/planet/mercury" replace />}
+        />
+        <Route path="Planet-fact-site/planet/:planet" element={<Planets />} />
       </Routes>
     </>
   );
