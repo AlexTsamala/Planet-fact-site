@@ -7,7 +7,7 @@ const DesktopHeader = () => {
   const navigate = useNavigate();
   const [click, setClick] = useState("Mercury");
   const statusHandler = (name: string) => {
-    navigate("/planet/" + name);
+    navigate("/Planet-fact-site/planet/" + name);
     setClick(name);
   };
   return (

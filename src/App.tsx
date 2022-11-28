@@ -22,10 +22,10 @@ function App() {
       ) : null}
       <Routes>
         <Route
-          path="Planet-fact-site/"
-          element={<Navigate to="Planet-fact-site/planet/mercury" replace />}
+          path="/Planet-fact-site"
+          element={<Navigate to="/Planet-fact-site/planet/mercury" replace />}
         />
-        <Route path="Planet-fact-site/planet/:planet" element={<Planets />} />
+        <Route path="/Planet-fact-site/planet/:planet" element={<Planets />} />
       </Routes>
     </>
   );
