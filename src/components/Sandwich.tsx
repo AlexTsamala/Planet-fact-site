@@ -10,7 +10,7 @@ const SandwichOfPlanet = (props: {
   const navigate = useNavigate();
   const statusHandler = (name: string) => {
     props.setSandwichStatus(false);
-    navigate("/Planet-fact-site/planet/" + name);
+    navigate("/planet/" + name);
   };
   return (
     <Container>
